@@ -43,3 +43,31 @@ document.querySelectorAll('[data-project]').forEach(button => button.addEventLis
 }));
 document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click', event => {if(event.target === dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+
+// Each direction is addressable so comparisons can be shared without changing the original.
+const directions = {
+  original: {title:'静けさと、記憶に残るかたち。', kicker:'A PERSONAL UNIVERSE', status:'銀の花 — 光と静けさのポートフォリオ', color:'#080e17'},
+  cyber: {title:'夢のつづきは、電子の中に。', kicker:'MEMORY://RECONNECT', status:'青い記憶 — かつて夢見た未来へ', color:'#030b24'},
+  angel: {title:'失われた光も、美しい。', kicker:'AN ARCHIVE OF FALLEN LIGHT', status:'堕天使 — 静かな彫刻のギャラリー', color:'#101010'},
+  higan: {title:'消えゆくものに、心をとめて。', kicker:'ON THE OTHER SIDE OF LIGHT', status:'電子の彼岸 — 月と花の余韻', color:'#071713'}
+};
+function selectDirection(name, updateURL = true) {
+  if (!Object.hasOwn(directions, name)) name = 'original';
+  const direction = directions[name];
+  document.documentElement.dataset.direction = name;
+  document.querySelector('#hero-title').textContent = direction.title;
+  document.querySelector('#world-kicker').textContent = direction.kicker;
+  document.querySelector('#direction-status').textContent = direction.status;
+  document.querySelector('meta[name="theme-color"]').content = direction.color;
+  document.querySelectorAll('[data-direction]').forEach(button => {
+    if (button.tagName === 'BUTTON') button.setAttribute('aria-pressed', String(button.dataset.direction === name));
+  });
+  if(updateURL) {
+    const url = new URL(location.href);
+    if(name === 'original') url.searchParams.delete('world'); else url.searchParams.set('world', name);
+    history.pushState(null, '', url);
+  }
+}
+selectDirection(new URL(location.href).searchParams.get('world'), false);
+document.querySelectorAll('button[data-direction]').forEach(button=>button.addEventListener('click',()=> selectDirection(button.dataset.direction)));
+addEventListener('popstate',()=> selectDirection(new URL(location.href).searchParams.get('world'),false));
