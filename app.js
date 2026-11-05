@@ -20,6 +20,8 @@ const hero = document.querySelector('.hero');
 const art = document.querySelector('.hero-art');
 hero.addEventListener('pointermove', event => {
   if (paused || event.pointerType !== 'mouse') return;
+  hero.style.setProperty('--view-x', `${(event.clientX / innerWidth - .5) * 10}px`);
+  hero.style.setProperty('--view-y', `${(event.clientY / innerHeight - .5) * 6}px`);
   art.style.setProperty('--px', `${(event.clientX / innerWidth - .5) * 10}px`);
   art.style.setProperty('--py', `${(event.clientY / innerHeight - .5) * 8}px`);
 });
@@ -84,3 +86,10 @@ function selectDirection(name, updateURL = true) {
 selectDirection(new URL(location.href).searchParams.get('world'), false);
 document.querySelectorAll('button[data-direction]').forEach(button=>button.addEventListener('click',()=> selectDirection(button.dataset.direction)));
 addEventListener('popstate',()=> selectDirection(new URL(location.href).searchParams.get('world'),false));
+
+const designToggle = document.querySelector('#design-toggle');
+designToggle.addEventListener('click', () => {
+  const collapsed = document.querySelector('.direction-picker').classList.toggle('collapsed');
+  designToggle.setAttribute('aria-expanded', String(!collapsed));
+  designToggle.querySelector('span').textContent = collapsed ? '＋' : '−';
+});

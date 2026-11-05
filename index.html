@@ -7,7 +7,7 @@
   <title>mochi — Portfolio</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" as="image" href="assets/coastal-print.png">
-  <link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=immersive-1"><script src="app.js?v=immersive-1" defer></script>
 </head>
 <body>
   <a class="skip" href="#work">作品へスキップ</a>
@@ -15,10 +15,10 @@
     <a class="wordmark" href="#home" aria-label="mochi トップへ">mochi<span class="spark">✧</span></a>
     <nav aria-label="メインナビゲーション"><a href="#work">WORK</a><a href="#about">ABOUT</a><a href="#contact">CONTACT <span>↗</span></a></nav>
   </header>
-  <aside class="direction-picker" aria-label="デザイン案を切り替える"><span class="picker-label">DESIGN STUDIES</span><div class="direction-options"><button data-direction="archive" aria-pressed="true">00 <span>海辺の記録</span></button><button data-direction="original" aria-pressed="false">01 <span>銀の花</span></button><button data-direction="cyber" aria-pressed="false">02 <span>青い記憶</span></button><button data-direction="angel" aria-pressed="false">03 <span>堕天使</span></button><button data-direction="higan" aria-pressed="false">04 <span>電子の彼岸</span></button></div><p id="direction-status" aria-live="polite">海辺の記録 — 写真から始まるポートフォリオ</p></aside>
+  <aside class="direction-picker collapsed" aria-label="デザイン案を切り替える"><button id="design-toggle" class="design-toggle" aria-expanded="false" type="button">DESIGN STUDIES <span>＋</span></button><span class="picker-label">DESIGN STUDIES</span><div class="direction-options"><button data-direction="archive" aria-pressed="true">00 <span>海辺の記録</span></button><button data-direction="original" aria-pressed="false">01 <span>銀の花</span></button><button data-direction="cyber" aria-pressed="false">02 <span>青い記憶</span></button><button data-direction="angel" aria-pressed="false">03 <span>堕天使</span></button><button data-direction="higan" aria-pressed="false">04 <span>電子の彼岸</span></button></div><p id="direction-status" aria-live="polite">海辺の記録 — 写真から始まるポートフォリオ</p></aside>
   <main>
     <section id="home" class="hero" aria-labelledby="hero-title">
-      <figure class="editorial-art"><img src="assets/coastal-print.png" width="1086" height="1448" alt="曇り空の海辺に停まるオレンジの車。写真をもとにした青緑の版画調イラスト。"><figcaption><span>海辺の記録</span><span>PHOTO → PRINT STUDY / 001</span></figcaption></figure><div class="editorial-index" aria-hidden="true">P — 001<br>PERSONAL ARCHIVE</div>
+      <figure class="editorial-art"><picture><source media="(min-width: 701px)" srcset="assets/coastal-wide.png"><img src="assets/coastal-print.png" width="1086" height="1448" alt="曇り空の海辺に停まるオレンジの車。写真をもとにした青緑の版画調イラスト。"></picture><figcaption><span>海辺の記録</span><span>PHOTO → PRINT STUDY / 001</span></figcaption></figure><div class="editorial-index" aria-hidden="true">P — 001<br>PERSONAL ARCHIVE</div>
       <div class="hero-art" aria-hidden="true"></div><div class="hero-shade" aria-hidden="true"></div>
       <div class="terminal-scene" aria-hidden="true"><div class="terminal-window"><div class="terminal-bar">MEMORY://ARCHIVE <span>−　□　×</span></div><div class="terminal-inner"><p>mochi personal archive</p><div class="wire-orb"></div><p class="terminal-readout">CONNECTING TO A DISTANT MEMORY<span class="blink">_</span></p><div class="terminal-data">LIGHT ............ FOUND<br>SIGNAL ........... BLUE<br>FEELING .......... UNKNOWN</div></div></div><div class="terminal-float">記憶を読み込んでいます。<br><span>夢のつづきを、ここから。</span></div></div>
       <div class="falling-petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>

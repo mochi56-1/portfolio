@@ -66,3 +66,36 @@ html[data-direction=archive] a:focus-visible,html[data-direction=archive] button
 .direction-options{flex-wrap:wrap}
 @media(max-width:700px){html[data-direction=archive] .hero{min-height:0;display:flex;flex-direction:column;align-items:stretch;padding:130px var(--side) 180px;gap:0}html[data-direction=archive] .editorial-index{top:90px;font-size:7px;line-height:1.6}html[data-direction=archive] .editorial-art{width:84%;align-self:flex-end;margin:15px 0 35px}html[data-direction=archive] .editorial-art figcaption{font-size:6px;gap:8px;margin-top:10px}html[data-direction=archive] .hero-content{padding:0;align-self:start}html[data-direction=archive] .editorial-note{font-size:9px;margin-bottom:9px}html[data-direction=archive] .hero-jp{font-size:29px;margin-bottom:24px;letter-spacing:3px}html[data-direction=archive] .hero-kicker{display:none}html[data-direction=archive] .hero-footer{bottom:130px}html[data-direction=archive] .hero-footer>span{display:none}html[data-direction=archive] .heading-row h2{font-size:32px}html[data-direction=archive] .section{padding-top:45px;padding-bottom:55px}html[data-direction=archive] .project-art.coastal-art{height:420px}html[data-direction=archive] .project.second{margin-top:0}html[data-direction=archive] .about h2{font-size:30px}html[data-direction=archive] .about-symbol{min-height:100px}html[data-direction=archive] .about-symbol>span{font-size:90px}.direction-options button span{font-size:8px;margin-left:2px}.direction-options button{min-width:0}.direction-picker{width:96vw}html[data-direction=archive] .contact h2{font-size:31px}}
 html[data-direction=archive] .hero-jp{color:#3c4944}html[data-direction=archive] .hero-footer>a{display:none}
+
+/* An uninterrupted coastal view; navigation stays quiet against the sky. */
+html[data-direction=archive] .hero{display:block;min-height:700px;height:100svh;max-height:1400px;padding:0;background:#334f52}
+html[data-direction=archive] .editorial-art{position:absolute;inset:0;max-width:none;width:auto;height:100%;margin:0;z-index:-2;overflow:hidden;transform:translate(var(--view-x,0px),var(--view-y,0px)) scale(1.025);animation:coastal-breath 30s ease-in-out infinite}
+html[data-direction=archive] .editorial-art picture{display:block;width:100%;height:100%}
+html[data-direction=archive] .editorial-art img{width:100%;height:100%;object-fit:cover;object-position:center;box-shadow:none}
+html[data-direction=archive] .editorial-art figcaption{display:none}
+html[data-direction=archive] .hero-shade{display:block;z-index:-1;background:linear-gradient(0deg,#101e2455,transparent 35%,#10212508 65%,#0d202333)}
+html[data-direction=archive] .header{color:#f0eee4}
+html[data-direction=archive] .header nav a:after{background:#f0eee4}
+html[data-direction=archive] .editorial-index{top:140px;color:#e0e7df99;font-size:7px}
+html[data-direction=archive] .hero-content{position:absolute;left:var(--side);top:37%;bottom:auto;padding:0;max-width:75%;color:#f1eee4}
+html[data-direction=archive] .hero-jp{font-size:clamp(28px,3.2vw,48px);color:#f1eee4;text-shadow:0 1px 20px #152a3520;margin-bottom:35px}
+html[data-direction=archive] .editorial-note{color:#e2e6dcbd;font-size:9px;letter-spacing:2px;margin-bottom:17px}
+html[data-direction=archive] .hero .text-link{color:#edece1;border-color:#e4e8d970}
+html[data-direction=archive] .hero-kicker{display:block;bottom:35px;color:#e5e9e0a6;font-size:7px}
+html[data-direction=archive] .hero-footer{bottom:25px;color:#edf0e4;left:auto;right:var(--side)}
+html[data-direction=archive] .hero-footer>span{display:none}
+html[data-direction=archive] .hero-footer button span{color:#f1eee4}
+html[data-direction=archive] .work{padding-top:100px}
+.direction-picker{width:min(570px,94vw)}
+.design-toggle{display:block;width:100%;background:none;border:0;padding:2px;color:#a7b4c5;font-size:8px;letter-spacing:2px;text-align:left}
+.design-toggle span{float:right;font-size:12px;line-height:10px}
+.direction-picker .picker-label{display:none}
+.direction-picker:not(.collapsed) .design-toggle{margin-bottom:10px}
+.direction-picker.collapsed{width:180px;left:50%;bottom:18px;padding:13px 15px}
+.direction-picker.collapsed .direction-options,.direction-picker.collapsed #direction-status{display:none}
+html[data-direction=archive] .direction-picker{background:#eef0e6e8;box-shadow:0 5px 20px #09202110}
+html[data-direction=archive] .design-toggle{color:#4a594e}
+@keyframes coastal-breath{0%,100%{scale:1}50%{scale:1.025}}
+html.motion-off[data-direction=archive] .editorial-art{transform:scale(1.025)}
+@media(max-width:700px){html[data-direction=archive] .hero{height:100svh;min-height:680px}html[data-direction=archive] .editorial-art{inset:0;height:100%;width:100%;align-self:auto;margin:0}html[data-direction=archive] .editorial-art img{object-position:53% center}html[data-direction=archive] .editorial-index{top:105px}html[data-direction=archive] .hero-content{top:28%;left:var(--side);max-width:90%}html[data-direction=archive] .hero-jp{font-size:29px;letter-spacing:3px;margin-bottom:28px}html[data-direction=archive] .editorial-note{font-size:8px}html[data-direction=archive] .hero-kicker{bottom:85px;left:var(--side);font-size:6px}html[data-direction=archive] .hero-footer{bottom:75px}html[data-direction=archive] .work{padding-top:65px}.direction-picker.collapsed{bottom:14px}}
+@media(prefers-reduced-motion:reduce){html[data-direction=archive] .editorial-art{transform:scale(1.025)}}
