@@ -46,14 +46,27 @@ dialog.addEventListener('click', event => {if(event.target === dialog){const r=d
 
 // Each direction is addressable so comparisons can be shared without changing the original.
 const directions = {
+  archive: {title:'海辺の記録。', kicker:'PHOTOGRAPH / PERSONAL STUDY', status:'海辺の記録 — 写真から始まるポートフォリオ', color:'#eeece5'},
   original: {title:'静けさと、記憶に残るかたち。', kicker:'A PERSONAL UNIVERSE', status:'銀の花 — 光と静けさのポートフォリオ', color:'#080e17'},
   cyber: {title:'夢のつづきは、電子の中に。', kicker:'MEMORY://RECONNECT', status:'青い記憶 — かつて夢見た未来へ', color:'#030b24'},
   angel: {title:'失われた光も、美しい。', kicker:'AN ARCHIVE OF FALLEN LIGHT', status:'堕天使 — 静かな彫刻のギャラリー', color:'#101010'},
   higan: {title:'消えゆくものに、心をとめて。', kicker:'ON THE OTHER SIDE OF LIGHT', status:'電子の彼岸 — 月と花の余韻', color:'#071713'}
 };
 function selectDirection(name, updateURL = true) {
-  if (!Object.hasOwn(directions, name)) name = 'original';
+  if (!Object.hasOwn(directions, name)) name = 'archive';
   const direction = directions[name];
+  const archive = name === 'archive';
+  projects[0] = archive
+    ? {title:'海辺の記録', description:'提供された海辺の写真をもとに、AIによる加工で版画調のイラストへ。青緑の色調、広い空、オレンジの車を残し、写真と絵のあいだの質感を試した個人制作です。', style:'coastal-art'}
+    : {title:'Moonflower', description:'月光に浮かぶ銀の花。このポートフォリオのためのAI生成アートによるビジュアルスタディです。', style:'moon-art'};
+  const card = document.querySelector('[data-project="0"]');
+  card.querySelector('.project-art').classList.toggle('coastal-art', archive);
+  card.querySelector('.art-label').textContent = archive ? 'COASTAL RECORD / 001' : 'MOONFLOWER';
+  card.querySelector('strong').textContent = projects[0].title;
+  card.querySelector('small').textContent = archive ? 'PHOTOGRAPH → PRINT' : 'VISUAL EXPLORATION';
+  document.querySelector('#work-title').innerHTML = archive ? '制作と、<br><em>記録。</em>' : 'Fragments<br><em>of creation.</em>';
+  document.querySelector('#about-title').innerHTML = archive ? 'つくること。<br><em>残しておくこと。</em>' : 'A quiet mind.<br><em>A curious soul.</em>';
+  document.querySelector('#contact-title').innerHTML = archive ? 'お問い合わせ。' : "Let's make<br><em>something matter.</em>";
   document.documentElement.dataset.direction = name;
   document.querySelector('#hero-title').textContent = direction.title;
   document.querySelector('#world-kicker').textContent = direction.kicker;
@@ -64,7 +77,7 @@ function selectDirection(name, updateURL = true) {
   });
   if(updateURL) {
     const url = new URL(location.href);
-    if(name === 'original') url.searchParams.delete('world'); else url.searchParams.set('world', name);
+    if(name === 'archive') url.searchParams.delete('world'); else url.searchParams.set('world', name);
     history.pushState(null, '', url);
   }
 }
