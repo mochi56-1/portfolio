@@ -99,3 +99,17 @@ html[data-direction=archive] .design-toggle{color:#4a594e}
 html.motion-off[data-direction=archive] .editorial-art{transform:scale(1.025)}
 @media(max-width:700px){html[data-direction=archive] .hero{height:100svh;min-height:680px}html[data-direction=archive] .editorial-art{inset:0;height:100%;width:100%;align-self:auto;margin:0}html[data-direction=archive] .editorial-art img{object-position:53% center}html[data-direction=archive] .editorial-index{top:105px}html[data-direction=archive] .hero-content{top:28%;left:var(--side);max-width:90%}html[data-direction=archive] .hero-jp{font-size:29px;letter-spacing:3px;margin-bottom:28px}html[data-direction=archive] .editorial-note{font-size:8px}html[data-direction=archive] .hero-kicker{bottom:85px;left:var(--side);font-size:6px}html[data-direction=archive] .hero-footer{bottom:75px}html[data-direction=archive] .work{padding-top:65px}.direction-picker.collapsed{bottom:14px}}
 @media(prefers-reduced-motion:reduce){html[data-direction=archive] .editorial-art{transform:scale(1.025)}}
+
+.depth-scene{display:none}#depth-toggle{display:none}
+html[data-direction=archive] #depth-toggle{display:inline-block;margin-right:20px}
+html.depth-enabled[data-direction=archive] .depth-scene{display:block;position:absolute;inset:0;z-index:-2;overflow:hidden;transform:scale(1.06);pointer-events:none}
+html.depth-enabled[data-direction=archive] .editorial-art{visibility:hidden}
+.depth-scene svg{width:100%;height:100%;display:block}
+.depth-layer{transition:transform 1.1s cubic-bezier(.15,.6,.25,1);will-change:transform}
+.depth-sky{transform:translate(calc(var(--depth-x,0px) * -.2),calc(var(--depth-y,0px) * -.2))}
+.depth-trees{transform:translate(calc(var(--depth-x,0px) * -.8),calc(var(--depth-y,0px) * -.8))}
+.depth-car{transform:translate(calc(var(--depth-x,0px) * -1.4),calc(var(--depth-y,0px) * -1.4))}
+.depth-ground{transform:translate(calc(var(--depth-x,0px) * -1.8),calc(var(--depth-y,0px) * -1.8))}
+.motion-off .depth-layer{transform:none!important;will-change:auto}
+@media(prefers-reduced-motion:reduce){.depth-layer{transform:none!important;will-change:auto}}
+@media(max-width:700px){html[data-direction=archive] #depth-toggle{margin-right:15px}}

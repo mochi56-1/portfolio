@@ -93,3 +93,39 @@ designToggle.addEventListener('click', () => {
   designToggle.setAttribute('aria-expanded', String(!collapsed));
   designToggle.querySelector('span').textContent = collapsed ? '＋' : '−';
 });
+
+// The plate and isolated silhouettes move at different depths, rather than tilting one image.
+const depthToggle = document.querySelector('#depth-toggle');
+let depthEnabled = true;
+function syncDepth() {
+  document.documentElement.classList.toggle('depth-enabled', depthEnabled);
+  depthToggle.setAttribute('aria-pressed', String(depthEnabled));
+  depthToggle.querySelector('span').textContent = depthEnabled ? '2.5D' : 'FLAT';
+}
+syncDepth();
+depthToggle.addEventListener('click', () => {depthEnabled = !depthEnabled;syncDepth();});
+const landscape = document.querySelector('#depth-landscape');
+const narrowScene = matchMedia('(max-width:700px)');
+function sizeScene(){landscape.setAttribute('viewBox',narrowScene.matches ? '850 0 650 941' : '0 0 1672 941');}
+sizeScene();narrowScene.addEventListener('change', sizeScene);
+let depthFrame = 0;
+let pointerX = 0, pointerY = 0;
+function updateDepth(){
+  depthFrame = 0;
+  if(paused || !depthEnabled) return;
+  const rect = hero.getBoundingClientRect();
+  if(rect.bottom <= 0 || rect.top >= innerHeight) return;
+  const scroll = Math.max(-1,Math.min(1,-rect.top / rect.height));
+  hero.style.setProperty('--depth-x', `${pointerX}px`);
+  hero.style.setProperty('--depth-y', `${pointerY + scroll * 10}px`);
+}
+function requestDepth(){if(!depthFrame) depthFrame = requestAnimationFrame(updateDepth);}
+hero.addEventListener('pointermove',event=>{
+  if(event.pointerType !== 'mouse' || paused) return;
+  const rect = hero.getBoundingClientRect();
+  pointerX = ((event.clientX-rect.left)/rect.width-.5)*12;
+  pointerY = ((event.clientY-rect.top)/rect.height-.5)*8;
+  requestDepth();
+});
+hero.addEventListener('pointerleave',()=>{pointerX=0;pointerY=0;requestDepth();});
+addEventListener('scroll',requestDepth,{passive:true});
